@@ -9,3 +9,6 @@ __pycache__/
 *.tc_backward.*
 *.log
 *.bak
+attention-learn-to-route.code-workspace
+.gitignore
+
