@@ -208,7 +208,7 @@ class VRPDataset(Dataset):
                     {
                         'loc': self.get_dynamic_data(size, strength=0.1),
                         # Uniform 1 - 9, scaled by capacities
-                        'demand': (torch.FloatTensor(size).uniform_(0, 9).int() + 1).float() / CAPACITIES[size],
+                        'demand': (torch.FloatTensor(size).uniform_(0, 9).int() + 1).float() / CAPACITIES[size], #change demand
                         'depot': torch.FloatTensor(2).uniform_(0, 1)
                     }
                     for i in range(num_samples)
@@ -218,7 +218,7 @@ class VRPDataset(Dataset):
                     {
                         'loc': torch.FloatTensor(size, 2).uniform_(0, 1),
                         # Uniform 1 - 9, scaled by capacities
-                        'demand': (torch.FloatTensor(size).uniform_(0, 9).int() + 1).float() / CAPACITIES[size],
+                        'demand': (torch.FloatTensor(size).uniform_(0, 9).int() + 1).float() / CAPACITIES[size], #change demand
                         'depot': torch.FloatTensor(2).uniform_(0, 1)
                     }
                     for i in range(num_samples)
