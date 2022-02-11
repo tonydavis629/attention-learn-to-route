@@ -19,7 +19,7 @@ def generate_vrp_data(dataset_size, vrp_size):
         np.random.uniform(size=(dataset_size, 2)).tolist(),  # Depot location
         np.random.uniform(size=(dataset_size, vrp_size, 2)).tolist(),  # Node locations
         # np.random.randint(1, 10, size=(dataset_size, vrp_size)).tolist(),  # Demand, uniform integer 1 ... 9
-        np.zeros(dataset_size,vrp_size).tolist(),
+        np.zeros((dataset_size,vrp_size)).tolist(),
         np.full(dataset_size, CAPACITIES[vrp_size]).tolist()  # Capacity, same for whole dataset
     ))
 
