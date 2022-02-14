@@ -14,24 +14,21 @@ def generate_vrp_data(dataset_size, vrp_size):
         10: 20.,
         20: 30.,
         50: 40.,
-        100: 50.
+        100: 50.,
+        300: 100.,
+        500: 200.,
+        700: 300.,
     }
-
-    depot = np.random.uniform(size=(dataset_size, 2))
 
     poly = polygon(num_vrtx=4, xlims=[0, 1], ylims=[0, 1])
     multipoly,_=poly.create_polygons(3)
     pond = ponds(num_pts=vrp_size, polygon = multipoly)
     node_loc = pond.loc
 
-    demand = np.zeros((dataset_size,vrp_size)).tolist()
-
     return list(zip(
-        depot,  # Depot location
-        # np.random.uniform(size=(dataset_size, vrp_size, 2)).tolist(),  # Node locations
+        np.random.uniform(size=(dataset_size, 2)).tolist(),
         node_loc,
-        # np.random.randint(1, 10, size=(dataset_size, vrp_size)).tolist(),  # Demand, uniform integer 1 ... 9
-        demand, 
+        np.zeros((dataset_size,vrp_size)).tolist(),
         np.full(dataset_size, CAPACITIES[vrp_size]).tolist()  # Capacity, same for whole dataset
     ))
 

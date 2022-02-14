@@ -7,6 +7,8 @@ from problems.vrp.state_cvrp import StateCVRP
 from problems.vrp.state_sdvrp import StateSDVRP
 from utils.beam_search import beam_search
 
+from haucs.data.dataset import polygon, ponds
+
 
 class CVRP(object):
 
@@ -183,12 +185,20 @@ class VRPDataset(Dataset):
                 10: 20.,
                 20: 30.,
                 50: 40.,
-                100: 50.
+                100: 50.,
+                300: 100.,
+                500: 200.,
+                700: 300.,
             }
+
+            poly = polygon(num_vrtx=4, xlims=[0, 1], ylims=[0, 1])
+            multipoly,_=poly.create_polygons(3)
+            pond = ponds(num_pts=size, polygon = multipoly)
+            node_loc = pond.loc
 
             self.data = [
                 {
-                    'loc': torch.FloatTensor(size, 2).uniform_(0, 1),
+                    'loc': torch.FloatTensor(node_loc),
                     # Uniform 1 - 9, scaled by capacities
                     'demand': (torch.FloatTensor(size).uniform_(0, 0).int()).float() / CAPACITIES[size],
                     'depot': torch.FloatTensor(2).uniform_(0, 1)
