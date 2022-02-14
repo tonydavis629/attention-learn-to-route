@@ -11,13 +11,13 @@ def generate_tsp_data(dataset_size, tsp_size):
 
 def generate_vrp_data(dataset_size, vrp_size):
     CAPACITIES = {
-        10: 20.,
-        20: 30.,
-        50: 40.,
+        10: 50.,
+        20: 50.,
+        50: 50,
         100: 50.,
-        300: 100.,
-        500: 200.,
-        700: 300.,
+        300: 50.,
+        500: 50.,
+        700: 50.,
     }
 
     poly = polygon(num_vrtx=4, xlims=[0, 1], ylims=[0, 1])

@@ -182,13 +182,13 @@ class VRPDataset(Dataset):
 
             # From VRP with RL paper https://arxiv.org/abs/1802.04240
             CAPACITIES = {
-                10: 20.,
-                20: 30.,
-                50: 40.,
+                10: 50.,
+                20: 50.,
+                50: 50,
                 100: 50.,
-                300: 100.,
-                500: 200.,
-                700: 300.,
+                300: 50.,
+                500: 50.,
+                700: 50.,
             }
 
             poly = polygon(num_vrtx=4, xlims=[0, 1], ylims=[0, 1])
@@ -200,7 +200,8 @@ class VRPDataset(Dataset):
                 {
                     'loc': torch.FloatTensor(node_loc),
                     # Uniform 1 - 9, scaled by capacities
-                    'demand': (torch.FloatTensor(size).uniform_(0, 0).int()).float() / CAPACITIES[size],
+                    # 'demand': (torch.FloatTensor(size).uniform_(0, 0).int()).float() / CAPACITIES[size],
+                    'demand': (torch.FloatTensor(size).uniform_(0, 1).int() + 1).float() / CAPACITIES[size],
                     'depot': torch.FloatTensor(2).uniform_(0, 1)
                 }
                 for i in range(num_samples)

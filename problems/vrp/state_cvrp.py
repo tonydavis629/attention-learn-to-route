@@ -146,7 +146,6 @@ class StateCVRP(NamedTuple):
         exceeds_cap = (self.demand[self.ids, :] + self.used_capacity[:, :, None] > self.VEHICLE_CAPACITY)
         # Nodes that cannot be visited are already visited or too much demand to be served now
         mask_loc = visited_loc.to(exceeds_cap.dtype) | exceeds_cap
-
         # Cannot visit the depot if just visited and still unserved nodes
         mask_depot = (self.prev_a == 0) & ((mask_loc == 0).int().sum(-1) > 0)
         return torch.cat((mask_depot[:, :, None], mask_loc), -1)
