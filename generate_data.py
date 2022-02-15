@@ -2,7 +2,7 @@ import argparse
 import os
 import numpy as np
 from utils.data_utils import check_extension, save_dataset
-from haucs.data.dataset import polygon, ponds
+from haucs.data.dataset import PondsDataset
 
 
 def generate_tsp_data(dataset_size, tsp_size):
@@ -20,15 +20,12 @@ def generate_vrp_data(dataset_size, vrp_size):
         700: 50.,
     }
 
-    poly = polygon(num_vrtx=4, xlims=[0, 1], ylims=[0, 1])
-    multipoly,_=poly.create_polygons(3)
-    pond = ponds(num_pts=vrp_size, polygon = multipoly)
-    node_loc = pond.loc
+    node_loc = PondsDataset(dataset_size, 3, vrp_size, [0, 1], [0, 1]).build_loc_dataset()
 
     return list(zip(
         np.random.uniform(size=(dataset_size, 2)).tolist(),
         node_loc,
-        np.zeros((dataset_size,vrp_size)).tolist(),
+        np.ones((dataset_size,vrp_size)).tolist(),
         np.full(dataset_size, CAPACITIES[vrp_size]).tolist()  # Capacity, same for whole dataset
     ))
 
