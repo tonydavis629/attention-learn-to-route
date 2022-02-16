@@ -4,6 +4,8 @@ import numpy as np
 from utils.data_utils import check_extension, save_dataset
 from haucs.data.dataset import PondsDataset
 
+import pickle
+
 
 def generate_tsp_data(dataset_size, tsp_size):
     return np.random.uniform(size=(dataset_size, tsp_size, 2)).tolist()
@@ -20,7 +22,8 @@ def generate_vrp_data(dataset_size, vrp_size):
         700: 50.,
     }
 
-    node_loc = PondsDataset(dataset_size, 3, vrp_size, [0, 1], [0, 1]).build_loc_dataset()
+    filename = 'ponddataset_loc' + str(vrp_size) + '.pkl'
+    node_loc = pickle.load(open(filename, 'rb'))
 
     return list(zip(
         np.random.uniform(size=(dataset_size, 2)).tolist(), #depot

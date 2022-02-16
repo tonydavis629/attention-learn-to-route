@@ -164,10 +164,15 @@ def make_instance(args):
         'depot': torch.tensor(depot, dtype=torch.float) / grid_size
     }
 
+def haucs_data(size):
+    poly = polygon(num_vrtx=4, xlims=[0, 1], ylims=[0, 1])
+    multipoly,_=poly.create_polygons(3)
+    pond = ponds(num_pts=size, polygon = multipoly)
+    return pond.loc
 
 class VRPDataset(Dataset):
     
-    def __init__(self, filename=None, size=50, num_samples=1000000, offset=0, distribution=None):
+    def __init__(self, filename=None, size=50, num_samples=1000, offset=0, distribution=None):
         super(VRPDataset, self).__init__()
 
         self.data_set = []
@@ -182,23 +187,20 @@ class VRPDataset(Dataset):
 
             # From VRP with RL paper https://arxiv.org/abs/1802.04240
             CAPACITIES = {
-                10: 50.,
-                20: 50.,
-                50: 50,
-                100: 50.,
+                10: 2.,
+                20: 4.,
+                50: 10,
+                100: 20.,
+                150: 30.,
+                200: 40.,
                 300: 50.,
                 500: 50.,
                 700: 50.,
             }
 
-            poly = polygon(num_vrtx=4, xlims=[0, 1], ylims=[0, 1])
-            multipoly,_=poly.create_polygons(3)
-            pond = ponds(num_pts=size, polygon = multipoly)
-            node_loc = pond.loc
-
             self.data = [
                 {
-                    'loc': torch.FloatTensor(node_loc),
+                    'loc': torch.FloatTensor(haucs_data(size)),
                     # Uniform 1 - 9, scaled by capacities
                     # 'demand': (torch.FloatTensor(size).uniform_(0, 0).int()).float() / CAPACITIES[size],
                     'demand': (torch.FloatTensor(size).uniform_(0, 1).int() + 1).float() / CAPACITIES[size],
