@@ -11,15 +11,15 @@ def generate_tsp_data(dataset_size, tsp_size):
 
 def generate_vrp_data(dataset_size, vrp_size):
     CAPACITIES = {
-        10: 2.,
-        20: 4.,
-        50: 10,
-        100: 20.,
-        150: 30.,
-        200: 40.,
-        300: 50.,
-        500: 50.,
-        700: 50.,
+        10: 3.,
+        20: 5.,
+        50: 11,
+        100: 21.,
+        150: 31.,
+        200: 41.,
+        300: 61.,
+        500: 101.,
+        700: 141.,
     }
 
     node_loc = PondsDataset(dataset_size, vrp_size, [0, 1], [0, 1]).build_loc_dataset()
