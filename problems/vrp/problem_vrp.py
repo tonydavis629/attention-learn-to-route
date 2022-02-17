@@ -187,13 +187,13 @@ class VRPDataset(Dataset):
 
             # From VRP with RL paper https://arxiv.org/abs/1802.04240
             CAPACITIES = {
-                10: 2.,
-                20: 4.,
-                50: 10,
-                100: 20.,
-                150: 30.,
-                200: 40.,
-                300: 50.,
+                10: 3.,
+                20: 5.,
+                50: 11,
+                100: 21.,
+                150: 31.,
+                200: 41.,
+                300: 51.,
                 500: 50.,
                 700: 50.,
             }
@@ -208,7 +208,6 @@ class VRPDataset(Dataset):
                 }
                 for i in range(num_samples)
             ]
-
         self.size = len(self.data)
 
     def __len__(self):

@@ -11,16 +11,18 @@ def generate_tsp_data(dataset_size, tsp_size):
 
 def generate_vrp_data(dataset_size, vrp_size):
     CAPACITIES = {
-        10: 50.,
-        20: 50.,
-        50: 50,
-        100: 50.,
+        10: 2.,
+        20: 4.,
+        50: 10,
+        100: 20.,
+        150: 30.,
+        200: 40.,
         300: 50.,
         500: 50.,
         700: 50.,
     }
 
-    node_loc = PondsDataset(dataset_size, 3, vrp_size, [0, 1], [0, 1]).build_loc_dataset()
+    node_loc = PondsDataset(dataset_size, vrp_size, [0, 1], [0, 1]).build_loc_dataset()
 
     return list(zip(
         np.random.uniform(size=(dataset_size, 2)).tolist(), #depot
