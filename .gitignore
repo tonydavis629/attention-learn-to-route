@@ -18,3 +18,5 @@ ponddataset_loc100.pkl
 ponddataset_loc300.pkl
 ponddataset_loc500.pkl
 ponddataset_loc700.pkl
+ATSP_ponddataset50.pkl
+.gitignore

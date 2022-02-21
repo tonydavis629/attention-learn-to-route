@@ -22,7 +22,7 @@ def generate_vrp_data(dataset_size, vrp_size):
         700: 141.,
     }
 
-    node_loc = PondsDataset(dataset_size, vrp_size, [0, 1], [0, 1]).build_loc_dataset()
+    node_loc = PondsDataset(dataset_size, vrp_size, [0, 1], [0, 1]).build_loc_dataset() # this is not right. maybe? node_loc is a list of datasets
 
     return list(zip(
         np.random.uniform(size=(dataset_size, 2)).tolist(), #depot

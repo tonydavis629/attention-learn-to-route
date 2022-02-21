@@ -1,1 +1,0 @@
-python run.py --graph_size 100 --baseline rollout --run_name '100_fixcapac_5veh' --batch_size 256 --problem cvrp --epoch_size 8192outputs/cvrp_100/100_capac_5veh_20220216T184620/epoch-12.pt --eval_batch_size 32 --val_size 64
