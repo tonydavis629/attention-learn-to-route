@@ -2,13 +2,17 @@
 name: attention_tsp
 channels:
 - pytorch
+- conda-forge
+- nvidia
 dependencies:
 - python>=3.8
 - anaconda
 - tqdm
 - pytorch
+- pytorch-cuda=11.7
 - torchvision
 - cuda91
+- shapely
 - pip
 - pip:
   - tensorboard_logger

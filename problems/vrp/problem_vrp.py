@@ -168,7 +168,7 @@ def haucs_data(size):
     poly = polygon(num_vrtx=4, xlims=[0, 1], ylims=[0, 1])
     multipoly,_=poly.create_polygons(3)
     pond = ponds(num_pts=size, polygon = multipoly, vertices=4)
-    return pond.loc
+    return pond.loc #pond.wind_loc
 
 class VRPDataset(Dataset):
     
